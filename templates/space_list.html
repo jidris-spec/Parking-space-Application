@@ -1,0 +1,22 @@
+<!-- space-list.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Available Parking Spaces</h2>
+    <div class="row">
+        {% for space in spaces %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ space.space_name }}</h5>
+                        <p class="card-text">Location: {{ space.location }}</p>
+                        <p class="card-text">Price: {{ space.price }} USD</p>
+                        <p class="card-text">Availability: {{ space.availability }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

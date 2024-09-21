@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Parking Rentals</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}">Home Page</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'list_space' %}">Post Your Space</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">log-in</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<div class="container-fluid bg-primary text-white text-center py-5">
+  <div class="container">
+    <h1 class="display-4 fw-bold">Find & Rent Parking Spaces in Bucharest</h1>
+    <p class="lead">The easiest way to rent a parking spot for a limited time.</p>
+    <a href="{% url 'list_space' %}" class="btn btn-light btn-lg">grab your favorite spot</a>
+  </div>
+</div>
+
+<!-- Features Section -->
+<div class="container py-5">
+  <h2 class="text-center mb-4">Why Choose Us?</h2>
+  <div class="row text-center">
+    <div class="col-md-4">
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Easy to Use</h5>
+          <p class="card-text">Sign up, find, and rent parking spaces effortlessly.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Flexible Listings</h5>
+          <p class="card-text">Post your parking space and choose the availability.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Secure Payments</h5>
+          <p class="card-text">Pay securely and conveniently online.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h1>Available Parking Spaces</h1>
+{% for space in spaces %}
+    <p>{{ space.space_name }} - {{ space.location }}</p>
+{% empty %}
+    <p>No parking spaces available.</p>
+{% endfor %}
+
+
+<!-- Footer -->
+<footer class="bg-light text-center py-4 mt-5">
+  <div class="container">
+    <p class="mb-0">&copy; 2024 Parking Rentals. All rights reserved.</p>
+  </div>
+</footer>
+
+{% endblock %}

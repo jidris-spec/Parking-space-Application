@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Parking Rentals</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}">Home Page</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#">List Your Space</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Log In</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<div class="container-fluid bg-primary text-white text-center py-5">
+  <div class="container">
+    <h1 class="display-4 fw-bold">Post Your Parking Space</h1>
+    <p class="lead">Reach potential renters in Bucharest effortlessly.</p>
+  </div>
+</div>
+
+<!-- Listing Form Section -->
+<div class="container py-5">
+  <h2 class="text-center mb-4">Post Your Space</h2>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow">
+        <div class="card-header text-center">
+          <h4 class="mb-0">Create a Listing</h4>
+        </div>
+        <div class="card-body">
+          <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="space_name" class="form-label">Space Name</label>
+              <input type="text" class="form-control" id="space_name" name="space_name" required>
+            </div>
+            <div class="mb-3">
+              <label for="location" class="form-label">Location</label>
+              <input type="text" class="form-control" id="location" name="location" required>
+            </div>
+            <div class="mb-3">
+              <label for="price" class="form-label">Price per Hour</label>
+              <input type="number" class="form-control" id="price" name="price" required>
+            </div>
+            <div class="mb-3">
+              <label for="availability" class="form-label">Availability</label>
+              <input type="text" class="form-control" id="availability" name="availability" placeholder="e.g., Mon-Fri, 9 AM - 5 PM" required>
+            </div>
+            <form method="POST">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <button type="submit" class="btn btn-primary">List Space</button>
+          </form>         
+         </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-light text-center py-4 mt-5">
+  <div class="container">
+    <p class="mb-0">&copy; 2024 Parking Rentals. All rights reserved.</p>
+  </div>
+</footer>
+
+{% endblock %}
